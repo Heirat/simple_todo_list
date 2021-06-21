@@ -35,6 +35,7 @@
                 <div class="wrapper">
                     <div class="wrapper-new">
                         <h2 class="title">New task:</h2>
+
                         <div class="d-flex">
                             <input type="text" class="input" id="input-new" placeholder="Do the homework">
                             <button class="btn" id="btn-add">Add</button>
@@ -42,23 +43,21 @@
                     </div>
 
                     <div class="wrapper-active d-none">
-                        <h2 class="title">Active tasks:</h2>
+
+                        <div class="position-relative">
+                            <h2 class="title">Active tasks</h2>
+                            <button class="btn btn-clear" id="clear-active">Clear</button>
+                        </div>
                         <ul class="list active-list">
-                            <li class="list-item">
-                                <span class="text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda iste repudiandae
-                                    eveniet, voluptate ullam perspiciatis?
-                                </span>
-                                <div class="list-item-buttons">
-                                    <button class="btn btn_colored btn-complete">Complete</button>
-                                    <button class="btn btn_colored btn-remove">Remove</button>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
 
                     <div class="wrapper-completed d-none">
-                        <h2 class="title">Completed tasks:</h2>
+                        <div class="position-relative">
+                            <h2 class="title">Completed tasks</h2>
+                            <button class="btn btn-clear" id="clear-active">Clear</button>
+                        </div>
                         <ul class="list completed-list">
                             <li class="list-item">
                                 <span class="text text_completed">

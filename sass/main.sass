@@ -63,6 +63,7 @@ body
         text-decoration: line-through
 
 .btn
+    padding: 5px 10px
     background-color: $main-bg-color
     border: 1px solid transparent
     @include shadow
@@ -83,6 +84,12 @@ body
 
     &_colored
         background-color: $btn-color
+
+    &-clear
+        position: absolute
+        right: 0
+        top: -4px
+        margin-right: clamp(10px, calc(5.0px + 1.6vw), 30px)
 
 .list-item
     display: flex
