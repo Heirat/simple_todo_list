@@ -12,14 +12,24 @@ let tasks = {
     completed: []
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    let tasksString = localStorage.getItem('tasks')
+    if (tasksString)
+        tasks = JSON.parse(tasksString)
+})
+
+window.addEventListener('beforeunload', e => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+})
+
 btnAdd.addEventListener('click', () => {
     if (inputNew.value && !tasks.active.includes(inputNew.value))
         tasks.active.push(inputNew.value);
     console.log(tasks.active);
 })
 
-inputNew.addEventListener('keyup', (event) => {
-    if (event.keyCode === 13) {
+inputNew.addEventListener('keyup', e => {
+    if (e.keyCode === 13) {
         btnAdd.click();
     }
 })
