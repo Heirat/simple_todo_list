@@ -36,12 +36,12 @@
                     <div class="wrapper-new">
                         <h2 class="title">New task:</h2>
                         <div class="d-flex">
-                            <input type="text" class="input new" placeholder="Do the homework">
-                            <button class="btn">Add</button>
+                            <input type="text" class="input" id="input-new" placeholder="Do the homework">
+                            <button class="btn" id="btn-add">Add</button>
                         </div>
                     </div>
 
-                    <div class="wrapper-active d-ndone">
+                    <div class="wrapper-active d-none">
                         <h2 class="title">Active tasks:</h2>
                         <ul class="list active-list">
                             <li class="list-item">
@@ -49,67 +49,24 @@
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda iste repudiandae
                                     eveniet, voluptate ullam perspiciatis?
                                 </span>
-
                                 <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
-                                </div>
-                            </li>
-                            <li class="list-item">
-                                <span class="text">
-                                    Lorem ipsum dolor sit amet consectetur
-                                </span>
-
-                                <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
-                                </div>
-                            </li>
-                            <li class="list-item">
-                                <span class="text">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda iste repudiandae
-                                    eveniet, voluptate ullam perspiciatis? Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Assumenda iste repudiandae
-                                    eveniet, voluptate ullam perspiciatis?
-                                </span>
-
-                                <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
-                                </div>
-                            </li>
-                            <li class="list-item">
-                                <span class="text">
-                                    Lorem ipsum
-                                </span>
-
-                                <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
+                                    <button class="btn btn_colored btn-complete">Complete</button>
+                                    <button class="btn btn_colored btn-remove">Remove</button>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <div class="wrapper-completed d-ndone">
+                    <div class="wrapper-completed d-none">
                         <h2 class="title">Completed tasks:</h2>
-                        <ul class="list">
+                        <ul class="list completed-list">
                             <li class="list-item">
                                 <span class="text text_completed">
                                     Prepare for the Computer Graphics Exam
                                 </span>
                                 <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
-                                </div>
-                            </li>
-                            <li class="list-item">
-                                <span class="text text_completed">
-                                    Wash the dishes
-                                </span>
-                                <div class="list-item-buttons">
-                                    <button class="btn btn_colored">Done</button>
-                                    <button class="btn btn_colored">Remove</button>
+                                    <button class="btn btn_colored btn-uncomplete">Uncomplete</button>
+                                    <button class="btn btn_colored btn-remove">Remove</button>
                                 </div>
                             </li>
                         </ul>
