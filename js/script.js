@@ -173,7 +173,12 @@ function clearList(taskArray, listElem, assignFunc) {
 
 activeList.addEventListener('click', e => {
 	if (e.target.classList.contains('btn-complete'))
-		makeCompleted(e.target.parentElement.parentElement)
+		makeCompleted(e.target.parentElement.parentElement);
+})
+
+completedList.addEventListener('click', e => {
+	if (e.target.classList.contains('btn-uncomplete'))
+		makeActive(e.target.parentElement.parentElement);
 })
 
 /**
@@ -184,6 +189,16 @@ function makeCompleted(listItem) {
 	let text = listItem.querySelector('.text').textContent;
 	deleteTask(text, tasks.active, activeList);
 	addTask(text, tasks.completed, assignCompletedList);
+}
+
+/**
+ * Moves listItem from completedList to activeList
+ * @param {Element} listItem
+ */
+function makeActive(listItem) {
+	let text = listItem.querySelector('.text').textContent;
+	deleteTask(text, tasks.completed, completedList);
+	addTask(text, tasks.active, assignActiveList);
 }
 
 /**
@@ -200,3 +215,5 @@ function deleteTask(taskText, taskArray, listElem) {
 	deletedItem.remove();
 	hideClearBtns();
 }
+
+/*  */
