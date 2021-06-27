@@ -1,29 +1,30 @@
 'use strict';
-// Elements for adding new task
+
+/* Elements for adding new task */
 const
 	inputNew = document.querySelector('#input-new'),
 	btnAdd = document.querySelector('#btn-add');
 
-// List elements
+/* List elements */
 const
 	wrapperActive = document.querySelector('.wrapper-active'),
 	activeList = document.querySelector('.active-list'),
 	wrapperCompleted = document.querySelector('.wrapper-completed'),
 	completedList = document.querySelector('.completed-list');
 
-// Clear buttons
+/* Clear buttons */
 const
 	btnClearActive = document.querySelector('#clear-active'),
 	btnClearCompleted = document.querySelector('#clear-completed');
 
-// Stores task texts
+/* Stores task texts */
 let tasks = {
 	active: [],
 	completed: [],
 };
 
-/* Safe and load from Local storage */
 
+/* Safe and load from Local storage */
 document.addEventListener('DOMContentLoaded', () => {
 	let tasksString = localStorage.getItem('tasks');
 	if (tasksString)
@@ -35,6 +36,47 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('beforeunload', (e) => {
 	localStorage.setItem('tasks', JSON.stringify(tasks));
 });
+
+
+/* Handle new task input and add button */
+btnAdd.addEventListener('click', () => {
+	addTask(inputNew.value, tasks.active, assignActiveList);
+	inputNew.value = '';
+});
+
+inputNew.addEventListener('keyup', (e) => {
+	if (e.keyCode === 13) {
+		btnAdd.click();
+	}
+});
+
+
+/* Handle clear buttons */
+btnClearActive.addEventListener('click', () => {
+	clearList(tasks.active, activeList, assignActiveList);
+});
+
+btnClearCompleted.addEventListener('click', () => {
+	clearList(tasks.completed, completedList, assignCompletedList);
+});
+
+
+/* Handle complete buttons */
+activeList.addEventListener('click', e => {
+	let listItem = e.target.parentElement.parentElement;
+	if (e.target.classList.contains('btn-complete'))
+		makeCompleted(listItem);
+	if (e.target.classList.contains('btn-remove'))
+		deleteTask(listItem.querySelector('.text').textContent, tasks.active, listItem.parentElement);
+})
+
+completedList.addEventListener('click', e => {
+	let listItem = e.target.parentElement.parentElement;
+	if (e.target.classList.contains('btn-uncomplete'))
+		makeActive(listItem);
+	if (e.target.classList.contains('btn-remove'))
+		deleteTask(listItem.querySelector('.text').textContent, tasks.completed, listItem.parentElement);
+})
 
 /**
  * Append new task in the end of active-list
@@ -84,6 +126,9 @@ function assignCompletedList() {
 	hideClearBtns();
 }
 
+/**
+ * Check if tasks.active or tasks.completed are empty
+ */
 function hideClearBtns() {
 	if (tasks.active.length > 0)
 		btnClearActive.classList.remove('d-none');
@@ -120,19 +165,6 @@ function assignTasksToList(taskArray, listElem, appendFunc) {
 	});
 }
 
-/* Handle new task input and add button */
-
-btnAdd.addEventListener('click', () => {
-	addTask(inputNew.value, tasks.active, assignActiveList);
-	inputNew.value = '';
-});
-
-inputNew.addEventListener('keyup', (e) => {
-	if (e.keyCode === 13) {
-		btnAdd.click();
-	}
-});
-
 /**
  * Add new task with taskText to taskArray with assignFunc
  * @param {string} taskText
@@ -146,16 +178,6 @@ function addTask(taskText, taskArray, assignFunc) {
 	}
 }
 
-/* Handle clear buttons */
-
-btnClearActive.addEventListener('click', () => {
-	clearList(tasks.active, activeList, assignActiveList);
-});
-
-btnClearCompleted.addEventListener('click', () => {
-	clearList(tasks.completed, completedList, assignCompletedList);
-});
-
 /**
  * Clears all tasks from taskArray and all elements from listElem
  * @param {string[]} taskArray 
@@ -168,18 +190,6 @@ function clearList(taskArray, listElem, assignFunc) {
 		listElem.removeChild(listElem.firstChild);
 	assignFunc();
 }
-
-/* Handle complete buttons */
-
-activeList.addEventListener('click', e => {
-	if (e.target.classList.contains('btn-complete'))
-		makeCompleted(e.target.parentElement.parentElement);
-})
-
-completedList.addEventListener('click', e => {
-	if (e.target.classList.contains('btn-uncomplete'))
-		makeActive(e.target.parentElement.parentElement);
-})
 
 /**
  * Moves listItem from activeList to completedList
@@ -215,5 +225,3 @@ function deleteTask(taskText, taskArray, listElem) {
 	deletedItem.remove();
 	hideClearBtns();
 }
-
-/*  */
